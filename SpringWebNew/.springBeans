@@ -10,6 +10,7 @@
 		<config>WebContent/WEB-INF/offers-servlet.xml</config>
 		<config>src/com/raghav/springweb/configxml/dao-context.xml</config>
 		<config>src/com/raghav/springweb/configxml/service-context.xml</config>
+		<config>src/com/raghav/springweb/configxml/security-context.xml</config>
 	</configs>
 	<autoconfigs>
 	</autoconfigs>

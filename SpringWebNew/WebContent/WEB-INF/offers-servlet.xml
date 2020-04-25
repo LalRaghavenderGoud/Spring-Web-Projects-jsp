@@ -8,16 +8,25 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 
 
-	
+
 	<context:component-scan
 		base-package="com.raghav.springweb.controllers">
 	</context:component-scan>
 	<mvc:annotation-driven></mvc:annotation-driven>
-	
-	<bean id="jspViewResolver" 
+
+	<bean id="jspViewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/jsps/"></property>
 		<property name="suffix" value=".jsp"></property>
 	</bean>
-	<mvc:resources location="/resources/" mapping="/static/**"></mvc:resources>
+	<mvc:resources location="/resources/"
+		mapping="/static/**"></mvc:resources>
+		
+	<bean id="messageSource"
+		class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basename"
+			value="com.raghav.springweb.messages.messages">
+		</property>
+	</bean>
+	
 </beans>

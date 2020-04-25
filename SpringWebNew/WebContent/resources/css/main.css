@@ -1,0 +1,43 @@
+@charset "ISO-8859-1";
+
+
+.formtable{
+	width: 400px;
+	padding: 10px;
+	border: 1px solid blue;
+}
+
+input(type=text){
+	width: 250px;
+}
+
+.label{
+	text-align: right;
+	vertical-align: top;
+	
+}
+
+.control{
+	margin-left: 10px;
+}
+
+.error{
+	font-size: small;
+	color: red;
+	margin-left: 10px;
+
+}
+
+.valid{
+	font-size: small;
+	color: green;
+	margin-left: 10px;
+
+}
+
+table.offers{
+	padding: 10px;
+	border: medium solid blue;
+	
+}
+

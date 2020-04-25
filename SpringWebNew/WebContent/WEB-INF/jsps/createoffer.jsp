@@ -7,7 +7,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Create Offer</title>
-<link href="${pageContext.request.contextPath}/static/resources/css/main.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/static/css/main.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 	<sf:form class="formtable" method="post"
