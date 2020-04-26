@@ -9,6 +9,7 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,6 +17,9 @@ import org.springframework.transaction.annotation.Transactional;
 public class UsersDao {
 
 	private NamedParameterJdbcTemplate jdbc;
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
 	@Autowired
 	public void setDataSource(DataSource jdbc) {
@@ -23,9 +27,16 @@ public class UsersDao {
 	}
 
 	@Transactional
-	public boolean createOffer(User user) {
+	public boolean create(User user) {
 
-		BeanPropertySqlParameterSource param = new BeanPropertySqlParameterSource(user);
+		//BeanPropertySqlParameterSource param = new BeanPropertySqlParameterSource(user);
+		MapSqlParameterSource param = new MapSqlParameterSource();
+		param.addValue("username", user.getUsername());
+		param.addValue("password", passwordEncoder.encode(user.getPassword()));
+		param.addValue("email", user.getEmail());
+		param.addValue("enabled", user.isEnabled());
+		param.addValue("authority", user.getAuthority());
+		
 		jdbc.update("insert into users(username,password,email,enabled) values(:username,:password,:email,:enabled)",
 				param);
 		return jdbc.update("insert into authorities(username,authority) values(:username,:authority)", param) == 1;

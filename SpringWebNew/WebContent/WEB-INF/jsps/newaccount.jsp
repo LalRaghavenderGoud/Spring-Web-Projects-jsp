@@ -70,7 +70,7 @@
 			<tr>
 				<td class="label">Password:</td>
 				<td><sf:input id="password" class="control" path="password"
-						name="password" type="text" /><br />
+						name="password" type="password" /><br />
 				<div Class="error">
 						<sf:errors path="password" type="text">
 						</sf:errors>
@@ -79,7 +79,7 @@
 			<tr>
 				<td class="label">Confirm Password:</td>
 				<td><input id="confirmpass" class="control"
-					path="confirmpassword" name="confirmpassword" type="text" />
+					path="confirmpassword" name="confirmpassword" type="password" />
 				<div id="matchpass"></div></td>
 			</tr>
 			<tr>

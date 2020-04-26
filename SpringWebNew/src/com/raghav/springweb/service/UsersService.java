@@ -20,7 +20,7 @@ public class UsersService {
 	}
 
 	public void create(User user) {
-		usersDao.createOffer(user);
+		usersDao.create(user);
 
 	}
 
