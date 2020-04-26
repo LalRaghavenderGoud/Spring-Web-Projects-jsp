@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-5.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<security:authentication-manager>
+<!-- 		<security:authentication-provider>
+			<security:password-encoder hash="bcrypt" />
+			<security:user-service>
+				<security:user name="Raghav"
+					password="$2y$12$8Wc5neMQY2sd7EvONuuXquTTR2MIabHSaq3nj8R6wb9eNB52wxoZS"
+					authorities="ROLE_USER, ROLE_ADMIN" />
+				<security:user authorities="ROLE_USER" name="Lal"
+					password="$2y$12$8Wc5neMQY2sd7EvONuuXquTTR2MIabHSaq3nj8R6wb9eNB52wxoZS" />
+				<security:user authorities="ADMIN"
+					name="Administrator"
+					password="$2y$12$bldJxXgsdc7XM3fegUIA9uDs/6qLYyEFbCN5EVEXU52YwjJk8ArUK" />
+			</security:user-service>
+		</security:authentication-provider> -->
+		<security:authentication-provider>
+			<security:jdbc-user-service data-source-ref="dataSource"
+				id="jdbcUserService" />
+			<security:password-encoder ref="passwordEncoder" />
+		</security:authentication-provider>
+	</security:authentication-manager>
+
+
+	<security:http use-expressions="true">
+
+		<security:intercept-url pattern="/admin"
+			access="hasRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/createoffer"
+			access="isAuthenticated()" />
+		<security:intercept-url pattern="/docreate"
+			access="isAuthenticated()" />
+		<security:intercept-url pattern="/offercreated"
+			access="isAuthenticated()" />
+		<security:intercept-url pattern="/"
+			access="permitAll" />
+		<security:intercept-url pattern="/logout"
+			access="permitAll" />
+		<security:intercept-url pattern="/static/**"
+			access="permitAll" />
+		<security:intercept-url pattern="/login"
+			access="permitAll" />
+		<security:intercept-url pattern="/offers"
+			access="permitAll" />
+		<security:intercept-url pattern="/newaccount"
+			access="permitAll" />
+		<security:intercept-url
+			pattern="/accountcreated" access="permitAll" />
+		<security:intercept-url
+			pattern="/createaccount" access="permitAll" />
+		<security:intercept-url
+			pattern="https://getbootstrap.com/docs/4.0/examples/signin/signin.css"
+			access="permitAll" />
+		<security:intercept-url
+			pattern="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+			access="permitAll" />
+		<security:intercept-url pattern="/**"
+			access="denyAll" />
+
+		<security:form-login />
+
+		<!-- <security:form-login login-page="/login" authentication-failure-url="/login?error=true" 
+			/> -->
+		<!-- <security:logout logout-success-url="/logout" invalidate-session="true" 
+			/> -->
+		<security:logout logout-success-url="/"
+			invalidate-session="true" />
+
+		<security:access-denied-handler error-page="/denied" />
+
+		<security:remember-me user-service-ref="jdbcUserService"
+			key="offersAppKey" />
+	</security:http>
+	<security:global-method-security secured-annotations="enabled"></security:global-method-security>
+	<bean id="passwordEncoder"
+		class="org.springframework.security.crypto.password.StandardPasswordEncoder">
+	</bean>
+</beans>
