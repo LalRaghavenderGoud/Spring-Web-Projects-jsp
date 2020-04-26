@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link href="${pageContext.request.contextPath}/static/resources/css/main.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/static/css/main.css" rel="stylesheet" type="text/css">
 <meta charset="ISO-8859-1">
 <title>Offers Page</title>
 

@@ -14,9 +14,10 @@ public class HomeController {
 
 		return "home";
 	}
-	@RequestMapping(value="/test",method=RequestMethod.GET)
+
+	@RequestMapping(value = "/test", method = RequestMethod.GET)
 	public String showtest(Model model, @RequestParam("id") String id) {
-		System.out.println("Id Is:"+ id);
+		System.out.println("Id Is:" + id);
 		return "home";
 	}
 }

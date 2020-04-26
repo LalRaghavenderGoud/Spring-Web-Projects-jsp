@@ -7,6 +7,15 @@
 	border: 1px solid blue;
 }
 
+.usertable{
+	width: 600px;
+	padding: 10px;
+	border: 1px solid blue;
+	background-color: #eba514;
+	list-style: lower-roman;
+	align-items: center;
+	color: blue;
+}
 input(type=text){
 	width: 250px;
 }

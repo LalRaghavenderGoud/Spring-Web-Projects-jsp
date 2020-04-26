@@ -1,6 +1,8 @@
 
 package com.raghav.springweb.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
@@ -22,11 +24,26 @@ public class LoginController {
 	@RequestMapping("/login")
 	public String showLogin() {
 		return "login";
-	}	
-	
+	}
+
 	@RequestMapping("/logout")
 	public String showLoggedOut() {
 		return "logout";
+	}
+
+	@RequestMapping("/denied")
+	public String showDenied() {
+		return "denied";
+	}
+
+	@RequestMapping("/admin")
+	public String showAdmin(Model model) {
+
+		List<User> users = usersService.getAllUsers();
+
+		model.addAttribute("users", users);
+
+		return "admin";
 	}
 
 	@RequestMapping("/newaccount")
@@ -50,17 +67,17 @@ public class LoginController {
 
 		user.setAuthority("USER");
 		user.setEnabled(true);
-		
-		if(usersService.exists(user.getUsername())) {
-			 result.rejectValue("username", "DuplicateKey.user.username");
-			 return "newaccount";
+
+		if (usersService.exists(user.getUsername())) {
+			result.rejectValue("username", "DuplicateKey.user.username");
+			return "newaccount";
 		}
-		
+
 		try {
 			usersService.create(user);
 		} catch (DuplicateKeyException e) {
-			 result.rejectValue("username", "DuplicateKey.user.username");
-			 return "newaccount";
+			result.rejectValue("username", "DuplicateKey.user.username");
+			return "newaccount";
 		}
 		return "accountcreated";
 	}
