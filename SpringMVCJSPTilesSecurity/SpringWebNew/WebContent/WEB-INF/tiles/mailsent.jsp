@@ -1,0 +1,1 @@
+<p><b><i></i>Mail Sent Successfully</i> </b></p>
